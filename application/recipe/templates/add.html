@@ -1,0 +1,88 @@
+ {% extends "base.html" %}
+{% load staticfiles %}
+
+{% block header %}
+	<script type="text/javascript" src="{% static "js/lib/jquery.min.js"%}"></script>
+{% endblock header %}
+
+{% block content %}
+	<h3>{{msg}}</h3>
+	<form method="POST" data-bind="recipe" id="addform">
+		<div id="meta">
+			{% csrf_token %}
+			<label for="title">Title</label>
+			<input type="text" name="title" data-bind='value:title'>
+			<label for="description">notes</label>
+			<textarea type="text" name="description" data-bind="value:note"></textarea>
+		</div>
+		<div id="igredients" data-bind="foreach: ingredient">
+			<ul>
+				<li>
+					<label for="name">Igredient</label>
+					<input class="ingrident_name" data-bind='value: name, uniqueId: name' type="text" value="name" name="name"/>
+				</li>
+				<li class="ammount half">
+					<label for="ammount">ammount</label>
+					<input data-bind='value: ammount, uniqueId: name' type="text" value="ammount" name="ammount" />
+				</li><li class="half">
+					<label for="messured">messured in </label>
+					<input data-bind='value: messured, uniqueId: name' type="text" value="messured" name="messured" />
+				</li>
+				<li class="delete"><a href='#' data-bind='click: $root.removeIngredient'>Delete</a></li>
+			</ul>
+		</div>
+		<a href='#' data-bind='click: $root.addIngredient'>Add ingredient</a>
+		<textarea data-bind="value:ingredients" class="outline"></textarea>
+
+		<div id="steps" data-bind="foreach: steps">
+			<ul>
+				<li><textarea data-bind='value: note, uniqueId: name' name="note"></textarea></li>
+				<li class="order"><label for="order">order </label><input data-bind='value: order, uniqueId: name' type="number" name="order" /></li>
+				<li class="delete"><a href='#' data-bind='click: $root.removeStep'>Delete</a></li>
+			</ul>
+		</div>
+		<a href='#' data-bind='click: $root.addStep'>Add step</a>
+		<textarea data-bind="value:allsteps" class="outline"></textarea>		
+		<br>
+		<input type="submit" value="submit">
+
+	</form>
+	<div id="sidebar">
+	</div>
+
+
+{% endblock content %}
+
+
+{% block script %}
+<script type="text/javascript" src="{% static "js/lib/knockout-3.3.0.js" %}"></script>
+<script type="text/javascript">
+	var data = {
+		"title":"apple pie",
+		"note":"a test note...",
+		"ingredient":[
+			{
+				"name":"apple",
+				"ammount":"2",
+				"messured":"item"
+			},{
+				"name":"Onion",
+				"ammount":"1",
+				"messured":"item"
+			}
+		],
+		"steps":[
+			{
+				"note": "the first step is to make a step",
+				"order": "1"
+			},{
+				"note": "the second step is to think of a step",
+				"order": "2"
+			},{
+				"note": "the last step is to make the step happen",
+				"order": "3"
+			}
+		]}
+</script>
+<script type="text/javascript" src="{% static "js/add.js"%}"></script>
+{% endblock script %}

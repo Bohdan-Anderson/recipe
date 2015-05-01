@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+	<h1>{{recipe}}</h1>
+	<h2>Igredients</h2>
+	<p>{{recipe.note|safe}}</p>
+	<ul>
+		{% for item in recipe.ingredients.all %}
+		<li>
+			{% if item.ammount_number %}
+				{{item.ammount_number|floatformat}}
+			{% else %}
+				{{item.ammount_string}}
+			{% endif %}
+			{% if item.mesured_in %}
+				{{item.mesured_in}}
+			{% endif %}
+
+			{{item.Ingredient}}
+		</li>	
+		{% endfor %}
+	</ul>
+
+	<h2>Steps</h2>
+	<ol>
+		{% for item in recipe.steps.all %}
+			<li>{{item}}</li>
+		{% endfor %}	
+	</ol>
+{% endblock content	 %}

@@ -1,0 +1,96 @@
+@mixin transition($transition-property, $transition-time, $method) {
+	-webkit-transition: $transition-property $transition-time $method;
+	-moz-transition: $transition-property $transition-time $method;
+	-ms-transition: $transition-property $transition-time $method;
+	-o-transition: $transition-property $transition-time $method;
+	transition: $transition-property $transition-time $method;
+}
+
+html,body{
+	padding: 0;
+	margin: 0;
+	font-family: sans-serif;
+}
+
+ul,li{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#wrapper{
+	max-width: 700px;
+	min-width: 350px;
+	width: 80%;
+	margin: 0 auto;
+	text-align: center;
+	position: relative;
+}
+
+input,textarea{
+	margin: 0 0 0.5em 0;
+	padding: 0.5em 0.75em;
+	border: 0;
+	font-family: inherit;
+	font-size: inherit;
+	vertical-align: middle;
+	background-color: #f0f0f0;
+}
+label{
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+#addform{
+	#meta{
+		label{
+			display: block;
+		}
+	}
+	a{
+		text-decoration: none;
+	}
+	textarea{
+		width: 80%;
+		min-width: 200px;
+		max-width: 400px;
+	}
+	.delete{
+		text-align: right;
+		position: absolute;
+		top: 0;
+		right: 0;
+		a{
+			color: #f00;
+			padding: 0.5em 0.75em;
+			display: inline-block;
+		}
+		a:hover{
+			background-color: #f00;
+			color: #fff;
+		}
+	}
+	#igredients,#steps{
+		padding: 1em 0;
+		ul{
+			margin: 1em 0;
+			position: relative;
+		}
+		.half,.order{
+			display: inline-block;
+			padding-right: 1em;
+			input{
+				width: 50px;
+			}
+			label{
+				font-size: 0.8em;
+			}
+		}
+	}
+	.outline{
+		min-width: 80%;
+		min-height: 100px;
+		display: block;
+		margin: 0 auto;
+	}
+}

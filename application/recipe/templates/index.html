@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+	<ul>
+	{% for recipe in recipies %}
+		<li><a href="recipe/{{recipe.pk}}">{{recipe}}</a></li>
+	{% endfor %}
+	</ul>
+{% endblock content	 %}
